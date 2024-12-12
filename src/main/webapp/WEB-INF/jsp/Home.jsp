@@ -3,9 +3,9 @@
 <html>
 <head>
     <title>Tennis</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/homePage.css">
+    <link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/css/homePage.css">
 </head>
 
 <body>
