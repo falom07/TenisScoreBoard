@@ -1,0 +1,35 @@
+.page
+{
+    background-color: #2f6e71;
+    width: 20%;
+    height: 20vh;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto auto auto auto;
+
+
+}
+main{
+    display: flex;
+}
+.button{
+    font-size: 1.5em;
+    color: white;
+    background: rgb(13, 85, 79);
+    border: 2px solid #ffffff;
+    width: 70%;
+
+    margin: 10px 20px 30px 10%;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+
+
+}
+.button:hover{
+    background-color: #112a46;
+    color: #ffcc00;
+    border: #ffcc00 solid 2px;
+}
