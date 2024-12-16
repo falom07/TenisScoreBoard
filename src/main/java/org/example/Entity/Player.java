@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Builder
 @Table(name = "players")
-//@ToString(exclude = {"listOfMatchesFor1Player","listOfMatchesFor2Player","listOfMatchesWinner"})
+@ToString(exclude = {"listOfMatchesFor1Player","listOfMatchesFor2Player","listOfMatchesWinner"})
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

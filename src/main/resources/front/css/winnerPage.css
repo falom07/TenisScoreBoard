@@ -1,0 +1,32 @@
+main{
+    display:flex;
+}
+
+.sideHalf{
+    background: url("../image/tennisWinner.webp") no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 33%;
+
+}
+
+
+.centerHalf{
+    display: flex;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    height: 100%;
+    width:34%;
+    align-items: center;
+    justify-content: center;
+}
+.winnerForm{
+    display: flex;
+    background: #2bc6b0;
+    width: 90%;
+    height: 10%;
+    border: 2px black solid;
+    border-radius: 10px ;
+    align-items: center;
+    justify-content: center;
+}

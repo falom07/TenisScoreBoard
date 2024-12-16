@@ -1,19 +1,14 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tennis</title>
-    <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/header.css" type="text/css">
-
-    <link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/css/homePage.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/winnerPage.css">
 </head>
-
 <body>
-
 <header>
-
     <form action="${pageContext.request.contextPath}/" method="get">
         <button type="submit" class="homePage" >Home</button>
     </form>
@@ -27,17 +22,15 @@
     </form>
 </header>
 <main>
-
-    <div class="page">
-        <a><div class = "button"><p><b>Watch all matches </b></p></div></a>
-        <form action="${pageContext.request.contextPath}/new-match" method="get">
-            <button type="submit" class="button" >New</button>
-        </form>
+    <div class="sideHalf"></div>
+    <div class="centerHalf">
+        <div class="winnerForm">
+            <h1>Winner: ${requestScope.winnerName}</h1>
+        </div>
     </div>
+    <div class="sideHalf"></div>
 </main>
-<footer>
-
-</footer>
+<footer></footer>
 
 </body>
 </html>
