@@ -26,22 +26,26 @@ public class PlayerDAO implements CrudDAO<Player> {
 
     @Override
     public Player add(Player player) {
-
+        synchronized (lock) {
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
 
-            synchronized (lock) {
-                var hasPlayer = session.createQuery("select name from Player where name = :name", String.class)
+                session.beginTransaction();
+                Long idPlayer = session.createQuery("select id from Player where name = :name", Long.class)
                         .setParameter("name", player.getName())
-                        .uniqueResultOptional();
+                        .uniqueResult();
 
-                if (hasPlayer.isEmpty()) {
+                if (idPlayer == null) {
                     session.persist(player);
+                }else{
+                    player.setId(idPlayer);
                 }
+                session.getTransaction().commit();
 
-            }
-            session.getTransaction().commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error adding player " + player.getName(), e);
         }
+    }
 
         return player;
     }

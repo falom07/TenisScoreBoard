@@ -41,7 +41,6 @@ public class ServletNewMatch extends HttpServlet {
             UUID idMatch = MATCH_SERVICE.createNewMatch(match);
 
 
-            req.getSession().setAttribute("idMatch",idMatch);
             req.getSession().setAttribute("matches",MapMatches.matchMap);
 
 

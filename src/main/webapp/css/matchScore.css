@@ -1,0 +1,58 @@
+main{
+   background: url("../image/gameField.webp") no-repeat;
+    display: flex;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+.squareForScore{
+    display: flex;
+    background: white;
+    width: 40%;
+    height: 30%;
+    border: 3px solid black;
+    border-radius: 5px ;
+
+
+}
+.tableForScore{
+    margin: 25px 0;
+    min-width: 100%;
+
+}
+
+.tableForScore thead tr{
+    background: #2f6e71;
+    color: white;
+    text-align: center;
+
+}
+.tableForScore tr,
+.tableForScore td{
+    padding: 10PX;
+}
+table tbody td{
+    border-bottom: 2px solid grey;
+
+}
+.formPost{
+    min-width: 20%;
+    text-align: center;
+}
+.buttonGet{
+
+    background-color: #2d94ff;
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1em;
+}
+.buttonGet:hover{
+    background-color: #112a46;
+    color: #f3f346;
+    transform: scale(1.1);
+    transition: all 0.3s ease ;
+}
+

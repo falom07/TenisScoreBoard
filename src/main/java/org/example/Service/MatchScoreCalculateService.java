@@ -16,6 +16,7 @@ public class MatchScoreCalculateService {
             matchPlayerLosePoint = matchScore.getPlayers().get(1);
         }
 
+
         if(matchPlayerWinPoint.getGames().equals("6") && matchPlayerLosePoint.getGames().equals("6")){
             calculatePointsTiebreaker(matchPlayerWinPoint,matchPlayerLosePoint,matchScore);
         }else {

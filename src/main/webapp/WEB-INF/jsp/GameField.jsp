@@ -1,25 +1,70 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Tennis</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/matchScore.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+
 </head>
 <body>
-dfvc
-<p>Player 1: ${sessionScope.matches[sessionScope.idMatch].players.get(0).playerName}</p>
-<p>point: ${sessionScope.matches[sessionScope.idMatch].players.get(0).points}</p>
-<p>game: ${sessionScope.matches[sessionScope.idMatch].players.get(0).games}</p>
-<p>sets: ${sessionScope.matches[sessionScope.idMatch].players.get(0).sets}</p>
-<form action="" method="post">
-    <button type="submit" name = "playerWinPoint" value="player1">pl1</button>
-</form>
+<header>
+    <form action="${pageContext.request.contextPath}/" method="get">
+        <button type="submit" class="homePage" >Home</button>
+    </form>
 
-<p>Player 2: ${sessionScope.matches[sessionScope.idMatch].players.get(1).playerName}</p>
-<p>point: ${sessionScope.matches[sessionScope.idMatch].players.get(1).points}</p>
-<p>game: ${sessionScope.matches[sessionScope.idMatch].players.get(1).games}</p>
-<p>sets: ${sessionScope.matches[sessionScope.idMatch].players.get(1).sets}</p>
-<form action="" method="post">
-    <button type="submit" name = "playerWinPoint" value="player2">pl2</button>
-</form>
+    <form action="${pageContext.request.contextPath}/match" method="get">
+        <button type="submit" class="matchesPage" >Matches</button>
+    </form>
+
+    <form action="${pageContext.request.contextPath}/new-match" method="get">
+        <button type="submit" class="newMatch" >New</button>
+    </form>
+    <h1>${requestScope.idMatch}</h1>
+</header>
+<main>
+    <div class="squareForScore">
+        <table class="tableForScore">
+            <thead>
+            <tr>
+                <th>Players</th>
+                <th>Sets</th>
+                <th>Games</th>
+                <th>Points</th>
+                <th>Chose</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(0).playerName}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(0).sets}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(0).games}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(0).points}</td>
+                <td class="formPost">
+                    <form action="" method="post" >
+                        <button type="submit" class="buttonGet" name="playerWinPoint" value="player1">get</button>
+                    </form></td>
+            </tr>
+            <tr>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(1).playerName}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(1).sets}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(1).games}</td>
+                <td>${sessionScope.matches[requestScope.idMatch].players.get(1).points}</td>
+                <td class="formPost">
+                    <form action="" method="post" >
+                        <button type="submit" class="buttonGet" name="playerWinPoint" value="player2">get</button>
+                    </form></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</main>
+<footer></footer>
 
 
 </body>

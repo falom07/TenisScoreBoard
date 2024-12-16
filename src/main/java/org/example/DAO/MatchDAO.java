@@ -32,6 +32,7 @@ public class MatchDAO implements CrudDAO<Match> {
             session.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Error adding match ", e);
         }
         return match;
     }
@@ -58,6 +59,7 @@ public class MatchDAO implements CrudDAO<Match> {
             session.getTransaction().commit();
         }catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Error update match ", e);
         }
 
     }
