@@ -28,9 +28,9 @@ public class PlayerDAO implements CrudDAO<Player> {
 
 
     @Override
-    public Player add(Player player,Session session) {
+    public Player add(Player player) {
         synchronized (lock) {
-        try {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
 
                 session.beginTransaction();
                 Long idPlayer = session.createQuery("select id from Player where name = :name", Long.class)
@@ -54,17 +54,17 @@ public class PlayerDAO implements CrudDAO<Player> {
     }
 
     @Override
-    public List<Player> readAll(Session session) {
+    public List<Player> readAll() {
         return List.of();
     }
 
     @Override
-    public Player readOne(String code,Session session) {
+    public Player readOne(String code) {
         return null;
     }
 
     @Override
-    public void update(Player o,Session session) {
+    public void update(Player o) {
 
     }
 }

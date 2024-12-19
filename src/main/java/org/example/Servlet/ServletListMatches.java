@@ -15,18 +15,25 @@ import java.util.Optional;
 
 @WebServlet("/matches")
 public class ServletListMatches extends HttpServlet {
-    private static final MatchListService instance = MatchListService.getInstance();
+    private static final MatchListService matchListService = MatchListService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String pageNumber = req.getParameter("pageNumber");
+        String page = req.getParameter("page");
         String pageSize = req.getParameter("pageSize");
         String nameFilter = req.getParameter("nameFilter");
+        String currentPage = req.getParameter("currentPage");
 
-        List<Match> matchList = instance.getMatchList(pageNumber,pageSize,nameFilter);
+        String pageNumber = matchListService.getUsersDesirePage(page,currentPage,pageSize);
+
+        List<Match> matchList = matchListService.getMatchList(pageNumber,pageSize,nameFilter);
+        List<String> listNumPages = matchListService.getNumPages(pageNumber,pageSize);
+
+
+        req.setAttribute("listNumPages",listNumPages);
 
         req.setAttribute("listMatches",matchList);
-        req.setAttribute("pageNumber",pageNumber);
+        req.setAttribute("currentPage",pageNumber);
         req.setAttribute("pageSize",pageSize);
         req.setAttribute("nameFilter",nameFilter);
 

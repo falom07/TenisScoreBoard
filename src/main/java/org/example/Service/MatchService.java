@@ -35,15 +35,15 @@ public class MatchService {
     }
 
     public UUID createNewMatch(MatchScore matchScore) {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Player player1 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(0).getPlayerName()).build(),session);
-            Player player2 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(1).getPlayerName()).build(),session);
+
+            Player player1 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(0).getPlayerName()).build());
+            Player player2 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(1).getPlayerName()).build());
             Match match = Match.builder()
                     .player1(player1)
                     .player2(player2)
                     .build();
 
-            matchDAO.add(match,session);
+            matchDAO.add(match);
             matchScore.setIdMatch(match.getId());
             matchScore.getPlayers().get(0).setId(player1.getId());
             matchScore.getPlayers().get(1).setId(player2.getId());
@@ -51,7 +51,7 @@ public class MatchService {
             UUID uuid = UUID.randomUUID();
             MapMatches.matchMap.put(uuid, matchScore);
             return uuid;
-        }
+
     }
 
     public void updateMatch(UUID uuid) {
@@ -75,7 +75,7 @@ public class MatchService {
                 .build();
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            matchDAO.update(match,session);
+            matchDAO.update(match);
         }
 
 

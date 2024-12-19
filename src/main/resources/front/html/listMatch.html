@@ -29,7 +29,7 @@
     <form action="${pageContext.request.contextPath}/matches" method="get" id="inputName">
 
         <input type="text" name="nameFilter" id="nameFilter" value="${requestScope.nameFilter}" >
-        <input type="number" name="pageNumber" value="${requestScope.pageNumber}" hidden="hidden">
+        <input type="number" name="currentPage" value="${requestScope.currentPage}" hidden="hidden">
         <input type="number" name="pageSize" value="${requestScope.pageSize}" hidden="hidden">
 
         <button type="submit" class="searchName">Search</button>
@@ -82,14 +82,31 @@
 
 <div id="lowerPanel">
     <div>
+
+<!--        <label for="page">Page</label>-->
+<!--        <input type="number" name="pageNumber" id="page" value="${requestScope.pageNumber}">-->
+
+
+
         <form action="${pageContext.request.contextPath}/matches" method="get">
-            <label for="page">Page</label>
-            <input type="number" name="pageNumber" id="page" value="${requestScope.pageNumber}">
+
+
+            <button type="submit" name="page" class="buttonsForPage" value="first"><<</button>
+            <button type="submit" name="page" class="buttonsForPage"  value="previous"><</button>
+
+            <button type="submit" name="page" class="buttonsForPage"  value="${requestScope.listNumPages.get(0)}">1</button>
+            <button id="currentPage" name="page" class="buttonsForPage"  value="${requestScope.listNumPages.get(1)}" disabled>2</button>
+            <button type="submit" name="page" class="buttonsForPage"  value="${requestScope.listNumPages.get(2)}">3</button>
+
+            <button type="submit" name="page" class="buttonsForPage"  value="next">></button>
+            <button type="submit" name="page" class="buttonsForPage"  value="last">>></button>
 
             <input type="number" name="nameFilter" value="${requestScope.nameFilter}" hidden="hidden">
             <input type="number" name="pageSize" value="${requestScope.pageSize}" hidden="hidden">
-
+            <input type="number" name="currentPage" value="${requestScope.currentPage}" hidden="hidden">
         </form>
+
+
     </div>
     <div>
         <form action="${pageContext.request.contextPath}/matches" method="get">
@@ -104,8 +121,8 @@
                 <option value="100">100</option>
             </select>
 
-            <input type="number" name="pageNumber" value="${requestScope.pageNumber}" hidden="hidden">
             <input type="number" name="nameFilter" value="${requestScope.nameFilter}" hidden="hidden">
+            <input type="number" name="currentPage" value="${requestScope.currentPage}" hidden="hidden">
 
     <button type="submit" class="takeSizeButton" >Take</button>
 

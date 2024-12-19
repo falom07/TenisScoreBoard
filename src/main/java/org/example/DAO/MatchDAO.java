@@ -1,6 +1,5 @@
 package org.example.DAO;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.example.Entity.Match;
@@ -25,9 +24,9 @@ public class MatchDAO implements CrudDAO<Match> {
     }
 
     @Override
-    public Match add(Match match,Session session) {
+    public Match add(Match match) {
 
-        try {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
 
@@ -41,14 +40,14 @@ public class MatchDAO implements CrudDAO<Match> {
         return match;
     }
     @Override
-    public List<Match> readAll(Session session) {
+    public List<Match> readAll() {
         return List.of();
     }
 
 
-    public List<Match> readAllWithSize(int sizeList, int numFirstData,Session session) {
+    public List<Match> readAllWithSize(int sizeList, int numFirstData) {
         List<Match> matchList;
-        try {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
             matchList = session.createQuery(
@@ -70,13 +69,13 @@ public class MatchDAO implements CrudDAO<Match> {
 
 
     @Override
-    public Match readOne(String code,Session session) {
+    public Match readOne(String code) {
         return null;
     }
 
     @Override
-    public void update(Match match,Session session) {
-        try {
+    public void update(Match match) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
             System.out.println(match);
@@ -91,9 +90,9 @@ public class MatchDAO implements CrudDAO<Match> {
 
     }
 
-    public List<Match> readAllByNameWithSize(String nameFilter, int sizeList, int numFirstData,Session session) {
+    public List<Match> readAllByNameWithSize(String nameFilter, int sizeList, int numFirstData) {
         List<Match> matchList;
-        try {
+        try (Session session = HibernateUtil.getSessionFactory().openSession() ) {
             session.beginTransaction();
 
 
@@ -116,9 +115,9 @@ public class MatchDAO implements CrudDAO<Match> {
         return matchList;
     }
 
-    public Long countDataInTable(Session session) {
+    public Long countDataInTable() {
         Long result;
-        try{
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
             result = session.createQuery("select count (m.id) from Match m",Long.class)
@@ -131,4 +130,5 @@ public class MatchDAO implements CrudDAO<Match> {
         }
         return result;
     }
+
 }
