@@ -26,7 +26,7 @@ public class ServletMatch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID uuid = UUID.fromString(req.getParameter("uuid"));
-        System.out.println(uuid);
+
         String player = req.getParameter("playerWinPoint");
 
         String winnerName = ManageMatchService.getInstance().calculateScore(uuid,player);

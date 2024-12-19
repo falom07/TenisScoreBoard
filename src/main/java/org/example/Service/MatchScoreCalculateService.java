@@ -1,10 +1,12 @@
 package org.example.Service;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.example.DTO.MatchPlayer;
 import org.example.DTO.MatchScore;
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class MatchScoreCalculateService {
 
-public class MatchScoreCalculateService {
-    private MatchScoreCalculateService() {}
     public static void calculateScore(MatchScore matchScore, String playersPoint) {
         int plNum = takePlayerNumber(playersPoint);
         MatchPlayer matchPlayerWinPoint = matchScore.getPlayers().get(plNum);

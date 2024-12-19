@@ -13,7 +13,7 @@
         <button type="submit" class="homePage" >Home</button>
     </form>
 
-    <form action="${pageContext.request.contextPath}/match" method="get">
+    <form action="${pageContext.request.contextPath}/matches" method="get">
         <button type="submit" class="matchesPage" >Matches</button>
     </form>
 

@@ -26,7 +26,7 @@ public class ServiceRegistration {
                     .company(company)
                     .build();
             UserInfo userInfo = UserInfo.builder()
-                    .user(user)
+//                    .user(user)
                     .address(userDTO.getAddress())
                     .birthday(userDTO.getBirthday())
                     .build();

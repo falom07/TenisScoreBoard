@@ -19,9 +19,9 @@ public class UserInfo {
     private String address;
     @Column(name = "birthday")
     private LocalDate birthday;
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_user")
-    private User user;
+//    @OneToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "id_user")
+//    private User user;
 
 
 //    public void setUser(User user) {

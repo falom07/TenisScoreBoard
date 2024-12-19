@@ -19,7 +19,7 @@ public class Chat {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "chat")
+    @OneToMany(mappedBy = "chat",fetch = FetchType.LAZY)
     private List<UserChat> chatList = new ArrayList<>();
 
 

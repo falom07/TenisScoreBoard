@@ -18,7 +18,7 @@
         <button type="submit" class="homePage" >Home</button>
     </form>
 
-    <form action="${pageContext.request.contextPath}/match" method="get">
+    <form action="${pageContext.request.contextPath}/matches" method="get">
         <button type="submit" class="matchesPage" >Matches</button>
     </form>
 
@@ -29,10 +29,14 @@
 <main>
 
     <div class="page">
-        <a><div class = "button"><p><b>Watch all matches </b></p></div></a>
+        <form action="${pageContext.request.contextPath}/matches" method="get">
+            <button type="submit" class="button" >Watch all matches</button>
+        </form>
+
         <form action="${pageContext.request.contextPath}/new-match" method="get">
             <button type="submit" class="button" >New</button>
         </form>
+
     </div>
 </main>
 <footer>

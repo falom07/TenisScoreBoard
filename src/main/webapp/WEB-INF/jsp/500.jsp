@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Как ты сюда попал,я не знаю.Но очень хочу узнать,мой тг для связи : @cringe_developer007</h1>
+<h1>How you got here, I don't know. But I'd like to know, my contact details for feedback: @cringe_developer007</h1>
 
 <p>Message : ${requestScope.error}</p>
 

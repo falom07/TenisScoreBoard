@@ -1,75 +1,42 @@
 package org.example;
 
 
-import org.example.Entity.Player;
+
+
+import org.example.DTO.MatchPlayer;
+import org.example.DTO.MatchScore;
+import org.example.Entity.Match;
+import org.example.Practice.Entity.User;
 import org.example.Util.HibernateUtil;
 import org.hibernate.Session;
 
+import javax.swing.*;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.*;
+
 
 public class Main {
     public static void main(String[] args) throws SQLException {
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            save("Loha", session);
-            save("Lova", session);
-            save("Lina", session);
-            save("Soha", session);
-            save("Voha", session);
-            getByName("Loha", session);
+            System.out.println(session.createQuery("select count (m.id) from Match m",Long.class)
+                    .getSingleResult());
 
             session.getTransaction().commit();
         }
-    }
 
-    private static void save(String playerName,Session session) throws SQLException {
-        Player player = Player.builder()
-                .name(playerName)
-                .build();
-//        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-//            session.beginTransaction();
-
-            session.persist(player);
-
-//            session.getTransaction().commit();
-
+//        List<String> listMatch = new ArrayList<>(List.of("Anton", "Vara", "Kola", "Loha", "Vita", "Arsen","Lola"));
+//        int pageNumber = 2;
+//        int pageSize = 3;
+//
+//        if(listMatch.size() < pageNumber*pageSize) {
+//            listMatch.subList((pageNumber - 1)  * pageSize, listMatch.size()).forEach(System.out::println);
+//        }else{
+//            listMatch.subList((pageNumber - 1) * pageSize,(pageNumber * pageSize) - 1 ).forEach(System.out::println);
+//        }
 
 
     }
 
-    private static void update(Long id) {
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-            Player player = Player.builder().id(id).build();
-//            Player player = session.get(Player.class, id);
-            player.setName("Change");
-            session.merge(player);
-            System.out.println(player);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println("end");
-
-    }
-
-    private static void getAll(Session session) throws SQLException {
-
-
-            List<Player> list = session.createQuery("select p from Player p", Player.class).list();
-
-            list.forEach(System.out::println);
-
-    }
-    private static void getByName(String name,Session session) throws SQLException {
-        session.createQuery("select p from Player p where p.name like('L%')", Player.class )
-                .list()
-                .forEach(System.out::println);
-
-    }
 
 }

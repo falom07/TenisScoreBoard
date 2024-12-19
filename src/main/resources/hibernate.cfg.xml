@@ -12,8 +12,9 @@
 <!--    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
 
 <!--jdbc:sqlite::resource:db/identifier.sqlite-->
-<!--    <property name="connection.url">jdbc:h2:~/Project Programiring/TenisScoreBoard/src/main/resources/db/tennis</property>-->
-    <property name="connection.url">jdbc:h2:mem:tennis</property>
+    <property name="connection.url">jdbc:h2:~/Project Programiring/TenisScoreBoard/src/main/resources/db/tennis</property>
+
+<!--    <property name="connection.url">jdbc:h2:mem:tennis</property>-->
     <property name="connection.username">sa</property>
       <property name="connection.password">sa</property>
     <property name="connection.driver_class">org.h2.Driver</property>

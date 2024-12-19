@@ -1,22 +1,28 @@
 package org.example.Service;
 
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.example.DAO.MatchDAO;
 import org.example.DAO.PlayerDAO;
 import org.example.DTO.MatchPlayer;
 import org.example.DTO.MatchScore;
 import org.example.Entity.Match;
 import org.example.Entity.Player;
+import org.example.Util.HibernateUtil;
 import org.example.Util.MapMatches;
+import org.hibernate.Session;
 
 import java.util.UUID;
 
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MatchService {
     private final MatchDAO matchDAO = MatchDAO.getInstance();
 
     private static final PlayerDAO playerDAO = PlayerDAO.getInstance();
     private static volatile MatchService instance;
-    private MatchService() {}
+
     public static MatchService getInstance() {
         if (instance == null) {
             synchronized (MatchService.class) {
@@ -29,21 +35,23 @@ public class MatchService {
     }
 
     public UUID createNewMatch(MatchScore matchScore) {
-        Player player1 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(0).getPlayerName()).build());
-        Player player2 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(1).getPlayerName()).build());
-        Match match = Match.builder()
-                .player1(player1)
-                .player2(player2)
-                .build();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Player player1 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(0).getPlayerName()).build(),session);
+            Player player2 = playerDAO.add(Player.builder().name(matchScore.getPlayers().get(1).getPlayerName()).build(),session);
+            Match match = Match.builder()
+                    .player1(player1)
+                    .player2(player2)
+                    .build();
 
-        matchDAO.add(match);
-        matchScore.setIdMatch(match.getId());
-        matchScore.getPlayers().get(0).setId(player1.getId());
-        matchScore.getPlayers().get(1).setId(player2.getId());
+            matchDAO.add(match,session);
+            matchScore.setIdMatch(match.getId());
+            matchScore.getPlayers().get(0).setId(player1.getId());
+            matchScore.getPlayers().get(1).setId(player2.getId());
 
-        UUID uuid = UUID.randomUUID();
-        MapMatches.matchMap.put(uuid, matchScore);
-        return uuid;
+            UUID uuid = UUID.randomUUID();
+            MapMatches.matchMap.put(uuid, matchScore);
+            return uuid;
+        }
     }
 
     public void updateMatch(UUID uuid) {
@@ -66,7 +74,11 @@ public class MatchService {
                 .winner(winner)
                 .build();
 
-        matchDAO.update(match);
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            matchDAO.update(match,session);
+        }
+
+
         MapMatches.matchMap.remove(uuid);
     }
 }

@@ -9,7 +9,7 @@ import org.example.Util.GetJSP;
 
 import java.io.IOException;
 
-@WebServlet("/")
+@WebServlet(value = "/",name = "sdf")
 public class ServletHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -2,7 +2,12 @@ package org.example.Practice.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -10,8 +15,10 @@ import java.util.Set;
 @Builder
 @Entity
 @AllArgsConstructor
+
 @Table(name = "company")
 @ToString(exclude = "listUser")
+
 
 public class Company {
     @Id
@@ -27,5 +34,6 @@ public class Company {
     @Column(name = "salary")
     private int salary;
     @OneToMany(mappedBy = "company",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,orphanRemoval = true)
-    private Set<User> listUser;
+//    @Fetch(FetchMode.SUBSELECT)
+    private List<User> listUser= new ArrayList<>();
 }

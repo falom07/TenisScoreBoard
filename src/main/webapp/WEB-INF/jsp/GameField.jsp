@@ -15,14 +15,14 @@
         <button type="submit" class="homePage" >Home</button>
     </form>
 
-    <form action="${pageContext.request.contextPath}/match" method="get">
+    <form action="${pageContext.request.contextPath}/matches" method="get">
         <button type="submit" class="matchesPage" >Matches</button>
     </form>
 
     <form action="${pageContext.request.contextPath}/new-match" method="get">
         <button type="submit" class="newMatch" >New</button>
     </form>
-    <h1>${requestScope.idMatch}</h1>
+
 </header>
 <main>
     <div class="squareForScore">

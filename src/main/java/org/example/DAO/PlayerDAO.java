@@ -1,17 +1,20 @@
 package org.example.DAO;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.example.Entity.Player;
 import org.example.Util.HibernateUtil;
 import org.hibernate.Session;
-
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PlayerDAO implements CrudDAO<Player> {
     volatile AtomicInteger i = new AtomicInteger(0);
     private static final Object lock = new Object();
     private static volatile PlayerDAO instance;
-    private PlayerDAO() {}
+
     public static PlayerDAO getInstance() {
         if (instance == null) {
             synchronized (PlayerDAO.class) {
@@ -25,9 +28,9 @@ public class PlayerDAO implements CrudDAO<Player> {
 
 
     @Override
-    public Player add(Player player) {
+    public Player add(Player player,Session session) {
         synchronized (lock) {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
 
                 session.beginTransaction();
                 Long idPlayer = session.createQuery("select id from Player where name = :name", Long.class)
@@ -51,17 +54,17 @@ public class PlayerDAO implements CrudDAO<Player> {
     }
 
     @Override
-    public List<Player> readAll() {
+    public List<Player> readAll(Session session) {
         return List.of();
     }
 
     @Override
-    public Player readOne(String code) {
+    public Player readOne(String code,Session session) {
         return null;
     }
 
     @Override
-    public void update(Player o) {
+    public void update(Player o,Session session) {
 
     }
 }
